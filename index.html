@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ID Card Generator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <style>
+      /* Video background styling */
+      #video-background {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: -100;
+        object-fit: cover;
+      }
+
+      /* Content container with semi-transparent background */
+      .content-container {
+        background-color: rgba(255, 255, 255, 0.85);
+        padding: 20px;
+        border-radius: 15px;
+        margin-top: 20px;
+      }
+
+      #idCard {
+        width: 300px;
+        padding: 20px;
+        border: 2px solid #000;
+        border-radius: 15px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        margin: auto;
+        text-align: center;
+        max-width: 100%;
+      }
+      #idCard img {
+        max-width: 100%;
+      }
+      .company-logo {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+      }
+      .profile-photo-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+      }
+      .profile-photo {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 2px solid #ddd;
+      }
+      #output {
+        margin: 20px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Video Background -->
+    <video autoplay muted loop id="video-background">
+      <source src="bgvideo.mp4" type="video/mp4" />
+      Your browser does not support HTML5 video.
+    </video>
+
+    <div class="container py-5 content-container">
+      <h2
+        class="text-center mb-4"
+        style="
+          color: white;
+          background-color: #333399;
+          border-radius: 45px;
+          border-color: white;
+          border-width: 2px;
+          border-style: solid;
+          padding-bottom: 10px;
+          padding-top: 10px;
+
+        "
+      >
+        <b>🪪 ID Card Generator App 🪪</b>
+      </h2>
+
+      <div class="row g-3 mb-4">
+        <div class="col-md-3">
+          <input
+            type="text"
+            id="name"
+            class="form-control"
+            placeholder="Enter Full Name"
+          />
+        </div>
+        <div class="col-md-3">
+          <input
+            type="text"
+            id="company"
+            class="form-control"
+            placeholder="Enter Company Name"
+          />
+        </div>
+        <div class="col-md-3">
+          <input
+            type="text"
+            id="designation"
+            class="form-control"
+            placeholder="Enter Designation"
+          />
+        </div>
+        <div class="col-md-3">
+          <input
+            type="text"
+            id="id"
+            class="form-control"
+            placeholder="Enter ID"
+          />
+        </div>
+        <div class="col-md-3">
+          <input
+            type="text"
+            id="contact"
+            class="form-control"
+            placeholder="Enter Contact No."
+          />
+        </div>
+        <div class="col-md-3">
+          <input type="date" id="dob" class="form-control" />
+        </div>
+        <div class="col-md-3">
+          <select id="bgColor" class="form-control">
+            <option value="" disabled selected>
+              Select A Background Color Of ID Card
+            </option>
+            <option style="background-color: #16a085">
+              Dark Aqua (#16a085)
+            </option>
+            <option style="background-color: #f1c40f">
+              Golden Yellow (#f1c40f)
+            </option>
+            <option style="background-color: #e67e22">
+              Orange Glow (#e67e22)
+            </option>
+            <option style="background-color: #ecf0f1">
+              Soft Silver (#ecf0f1)
+            </option>
+            <option style="background-color: #95a5a6">
+              Cool Gray (#95a5a6)
+            </option>
+            <option style="background-color: #34495e">
+              Dark Slate Blue (#34495e)
+            </option>
+            <option style="background-color: #7f8c8d">
+              Muted Gray (#7f8c8d)
+            </option>
+            <option style="background-color: #d35400">
+              Copper Orange (#d35400)
+            </option>
+            <option style="background-color: #b03a2e">
+              Burnt Red (#b03a2e)
+            </option>
+            <option style="background-color: #1f618d">
+              Rich Blue (#1f618d)
+            </option>
+            <option style="background-color: #117a65">
+              Forest Green (#117a65)
+            </option>
+            <option style="background-color: #af7ac5">
+              Lavender Mist (#af7ac5)
+            </option>
+            <option style="background-color: #e59866">
+              Apricot Orange (#e59866)
+            </option>
+            <option style="background-color: #73c6b6">
+              Minty Teal (#73c6b6)
+            </option>
+            <option style="background-color: #f1948a">
+              Blush Coral (#f1948a)
+            </option>
+            <option style="background-color: #52be80">
+              Vivid Mint (#52be80)
+            </option>
+            <option style="background-color: #45b39d">
+              Tropical Teal (#45b39d)
+            </option>
+            <option style="background-color: #5dade2">
+              Cool Sky Blue (#5dade2)
+            </option>
+            <option style="background-color: #5499c7">
+              Ocean Mist (#5499c7)
+            </option>
+            <option style="background-color: #aab7b8">
+              Stone Gray (#aab7b8)
+            </option>
+            <option style="background-color: #007bff">
+              Bright Blue (#007bff)
+            </option>
+            <option style="background-color: #6610f2">
+              Indigo Vibe (#6610f2)
+            </option>
+            <option style="background-color: #6f42c1">
+              Royal Purple (#6f42c1)
+            </option>
+            <option style="background-color: #e83e8c">
+              Magenta Pink (#e83e8c)
+            </option>
+            <option style="background-color: #fd7e14">
+              Vibrant Orange (#fd7e14)
+            </option>
+            <option style="background-color: #ffc107">
+              Amber Gold (#ffc107)
+            </option>
+            <option style="background-color: #28a745">
+              Emerald Green (#28a745)
+            </option>
+            <option style="background-color: #20c997">
+              Teal Green (#20c997)
+            </option>
+            <option style="background-color: #17a2b8">
+              Bright Cyan (#17a2b8)
+            </option>
+            <option style="background-color: #dc3545">
+              Crisp Red (#dc3545)
+            </option>
+            <option style="background-color: #ff6384">
+              Bubblegum Red (#ff6384)
+            </option>
+            <option style="background-color: #36a2eb">
+              Bright Sky (#36a2eb)
+            </option>
+            <option style="background-color: #4bc0c0">
+              Bright Mint (#4bc0c0)
+            </option>
+            <option style="background-color: #ffcd56">
+              Sunny Yellow (#ffcd56)
+            </option>
+            <option style="background-color: #f67280">
+              Coral Pink (#f67280)
+            </option>
+            <option style="background-color: #c06c84">
+              Mauve Rose (#c06c84)
+            </option>
+            <option style="background-color: #6c5b7b">
+              Plum Shade (#6c5b7b)
+            </option>
+            <option style="background-color: #355c7d">
+              Deep Blue Gray (#355c7d)
+            </option>
+            <option style="background-color: #ff6f61">
+              Coral Flame (#ff6f61)
+            </option>
+            <option style="background-color: #2ecc71">
+              Bright Green (#2ecc71)
+            </option>
+            <option style="background-color: #3498db">
+              Ocean Blue (#3498db)
+            </option>
+            <option style="background-color: #9b59b6">
+              Lavender Indigo (#9b59b6)
+            </option>
+            <option style="background-color: #f39c12">
+              Sunburst Yellow (#f39c12)
+            </option>
+            <option style="background-color: #e74c3c">
+              Fire Red (#e74c3c)
+            </option>
+            <option style="background-color: #1abc9c">
+              Aqua Green (#1abc9c)
+            </option>
+            <option style="background-color: #8e44ad">
+              Royal Grape (#8e44ad)
+            </option>
+            <option style="background-color: #2980b9">
+              Deep Sky (#2980b9)
+            </option>
+            <option style="background-color: #27ae60">
+              Fresh Green (#27ae60)
+            </option>
+            <option style="background-color: #c0392b">
+              Carmine Red (#c0392b)
+            </option>
+            <option style="background-color: #ffebcd">
+              Blanched Almond (#ffebcd)
+            </option>
+            <option style="background-color: #faf0e6">Linen (#faf0e6)</option>
+            <option style="background-color: #ffe4b5">
+              Moccasin (#ffe4b5)
+            </option>
+            <option style="background-color: #ffe5b4">
+              Papaya Whip (#ffe5b4)
+            </option>
+            <option style="background-color: #fdf5e6">
+              Old Lace (#fdf5e6)
+            </option>
+            <option style="background-color: #faebd7">
+              Antique White (#faebd7)
+            </option>
+            <option style="background-color: #f4f4f4">
+              Soft Cotton (#f4f4f4)
+            </option>
+            <option style="background-color: #ffefd5">
+              Peach Puff (#ffefd5)
+            </option>
+            <option style="background-color: #f8f0e3">
+              Porcelain Pink (#f8f0e3)
+            </option>
+            <option style="background-color: #fceae8">
+              Angel Blush (#fceae8)
+            </option>
+            <option style="background-color: #e6ffe6">
+              Fresh Breeze (#e6ffe6)
+            </option>
+            <option style="background-color: #fffacd">
+              Lemon Chiffon (#fffacd)
+            </option>
+            <option style="background-color: #e0ffff">
+              Light Cyan (#e0ffff)
+            </option>
+            <option style="background-color: #f0f8ff">
+              Powder Blue (#f0f8ff)
+            </option>
+            <option style="background-color: #e1f5fe">
+              Baby Sky (#e1f5fe)
+            </option>
+            <option style="background-color: #ffdde1">
+              Cherry Blossom (#ffdde1)
+            </option>
+            <option style="background-color: #fffaf0">
+              Floral Cream (#fffaf0)
+            </option>
+            <option style="background-color: #fafafa">
+              Dust White (#fafafa)
+            </option>
+            <option style="background-color: #fefbd8">
+              Butter Cream (#fefbd8)
+            </option>
+            <option style="background-color: #e3ffe3">
+              Icy Green (#e3ffe3)
+            </option>
+            <option style="background-color: #f6f8fa">
+              Pearl Mist (#f6f8fa)
+            </option>
+            <option style="background-color: #ffe6e6">
+              Pale Rose (#ffe6e6)
+            </option>
+            <option style="background-color: #fbe8eb">
+              Soft Petal (#fbe8eb)
+            </option>
+            <option style="background-color: #fff0d4">
+              Golden Cream (#fff0d4)
+            </option>
+            <option style="background-color: #f9f3e3">
+              Ivory Mist (#f9f3e3)
+            </option>
+            <option style="background-color: #fefbea">
+              Sunbeam White (#fefbea)
+            </option>
+            <option style="background-color: #ebf4f8">
+              Sea Breeze (#ebf4f8)
+            </option>
+            <option style="background-color: #fffafc">
+              Milk Rose (#fffafc)
+            </option>
+            <option style="background-color: #f9f2ec">
+              Pale Coral (#f9f2ec)
+            </option>
+            <option style="background-color: #f7f7f7">
+              Chalk White (#f7f7f7)
+            </option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <input
+            type="file"
+            id="photo"
+            class="form-control"
+            accept="image/*"
+            title="Upload profile photo"
+          />
+        </div>
+        <div class="col-md-3">
+          <input
+            type="file"
+            id="logo"
+            class="form-control"
+            accept="image/*"
+            title="Upload company logo"
+          />
+        </div>
+      </div>
+
+      <div class="text-center mb-4">
+        <button
+          onclick="generateCard()"
+          class="btn btn-primary"
+          style="
+            font-style: times-new-roman;
+            font-size: 20px;
+            border-radius: 50px;
+            background-color: #333399;
+            border-color: white;
+          "
+        >
+          Generate Id Card
+        </button>
+      </div>
+
+      <div id="output" class="text-center"></div>
+
+      <div class="text-center">
+        <button
+          id="downloadImgBtn"
+          class="btn btn-success"
+          style="display: none"
+          onclick="downloadImage()"
+        >
+          Download as Image
+        </button>
+        <button
+          id="downloadPdfBtn"
+          class="btn btn-warning"
+          style="display: none"
+          onclick="downloadPDF()"
+        >
+          Download as PDF
+        </button>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <script>
+      // Initialize jsPDF
+      const { jsPDF } = window.jspdf;
+
+      function generateCard() {
+        const name = document.getElementById("name").value;
+        const company = document.getElementById("company").value;
+        const designation = document.getElementById("designation").value;
+        const id = document.getElementById("id").value;
+        const contact = document.getElementById("contact").value;
+        const dob = document.getElementById("dob").value;
+
+        // Get the selected option's background color
+        const bgColorSelect = document.getElementById("bgColor");
+        const selectedOption =
+          bgColorSelect.options[bgColorSelect.selectedIndex];
+        const bgColor = selectedOption.style.backgroundColor;
+
+        const photoFile = document.getElementById("photo").files[0];
+        const logoFile = document.getElementById("logo").files[0];
+
+        if (!name || !company || !designation || !id || !contact || !dob) {
+          alert("Please fill all required fields");
+          return;
+        }
+
+        if (!photoFile || !logoFile) {
+          alert("Please upload both profile photo and company logo");
+          return;
+        }
+
+        if (!bgColor) {
+          alert("Please select a background color");
+          return;
+        }
+
+        const reader1 = new FileReader();
+        const reader2 = new FileReader();
+
+        reader1.onload = function (e1) {
+          reader2.onload = function (e2) {
+            const cardHTML = `
+            <div id="idCard" style="background-color: ${bgColor};">
+              <div class="profile-photo-container">
+                <img src="${
+                  e1.target.result
+                }" alt="Profile Photo" class="profile-photo">
+              </div>
+              <div class="d-flex align-items-center justify-content-center gap-2 mb-2">
+                <img src="${
+                  e2.target.result
+                }" alt="Logo" class="company-logo me-2">
+                <h5 class="mb-0 fw-bold">${company}</h5>
+              </div>
+              <h6 class="fw-semibold">${name}</h6>
+              <p class="mb-1">${designation}</p>
+              <p class="mb-1">ID: ${id}</p>
+              <p class="mb-1">Contact: ${contact}</p>
+              <p class="mb-1">DOB: ${dob}</p>
+              <small class="text-muted">Generated on: ${new Date().toLocaleString()}</small>
+            </div>
+            `;
+            document.getElementById("output").innerHTML = cardHTML;
+            document.getElementById("downloadImgBtn").style.display =
+              "inline-block";
+            document.getElementById("downloadPdfBtn").style.display =
+              "inline-block";
+          };
+          if (logoFile) reader2.readAsDataURL(logoFile);
+        };
+
+        if (photoFile) reader1.readAsDataURL(photoFile);
+      }
+
+      function downloadImage() {
+        const card = document.getElementById("idCard");
+        if (!card) {
+          alert("Please generate the card first");
+          return;
+        }
+
+        // Wait for all images to load
+        const images = card.getElementsByTagName("img");
+        let loadedImages = 0;
+
+        Array.from(images).forEach((img) => {
+          if (img.complete) {
+            loadedImages++;
+          } else {
+            img.onload = () => {
+              loadedImages++;
+              if (loadedImages === images.length) {
+                captureCard();
+              }
+            };
+          }
+        });
+
+        if (loadedImages === images.length) {
+          captureCard();
+        }
+
+        function captureCard() {
+          html2canvas(card, {
+            scale: 2,
+            logging: true,
+            useCORS: true,
+            allowTaint: true,
+          })
+            .then((canvas) => {
+              const link = document.createElement("a");
+              link.download = "id_card.png";
+              link.href = canvas.toDataURL("image/png");
+              link.click();
+            })
+            .catch((err) => {
+              console.error("Error generating image:", err);
+              alert("Error generating image. Please try again.");
+            });
+        }
+      }
+
+      function downloadPDF() {
+        const card = document.getElementById("idCard");
+        if (!card) {
+          alert("Please generate the card first");
+          return;
+        }
+
+        // Wait for all images to load
+        const images = card.getElementsByTagName("img");
+        let loadedImages = 0;
+
+        Array.from(images).forEach((img) => {
+          if (img.complete) {
+            loadedImages++;
+          } else {
+            img.onload = () => {
+              loadedImages++;
+              if (loadedImages === images.length) {
+                captureCard();
+              }
+            };
+          }
+        });
+
+        if (loadedImages === images.length) {
+          captureCard();
+        }
+
+        function captureCard() {
+          html2canvas(card, {
+            scale: 2,
+            logging: true,
+            useCORS: true,
+            allowTaint: true,
+          })
+            .then((canvas) => {
+              const imgData = canvas.toDataURL("image/png");
+              const pdf = new jsPDF({
+                orientation: "portrait",
+                unit: "mm",
+              });
+
+              const imgWidth = 80; // mm
+              const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+              pdf.addImage(
+                imgData,
+                "PNG",
+                (210 - imgWidth) / 2,
+                (297 - imgHeight) / 2,
+                imgWidth,
+                imgHeight
+              );
+              pdf.save("id_card.pdf");
+            })
+            .catch((err) => {
+              console.error("Error generating PDF:", err);
+              alert("Error generating PDF. Please try again.");
+            });
+        }
+      }
+    </script>
+  </body>
+</html>
